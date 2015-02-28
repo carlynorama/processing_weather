@@ -1,7 +1,7 @@
 //For Maia
 //Based on using http://www.wunderground.com/ API
 
-
+String API_key = "Your_Key";
 
 float diameter;
 
@@ -48,7 +48,8 @@ void createFruitJSON() {
 void getRemoteWeatherJSON() {
   JSONObject json_to_read;
   //json_to_read = loadJSONObject("fakeweather.json");
-  json_to_read = loadJSONObject("http://api.wunderground.com/api/Your_Key/conditions/q/CA/San_Francisco.json");
+  String query = "http://api.wunderground.com/api/" + API_key + "/conditions/q/CA/San_Francisco.json";
+  json_to_read = loadJSONObject(query);
   JSONObject new_observations = json_to_read.getJSONObject("response");
   String version_number = new_observations.getString("version");
   //int numberOfElements = results.length();
@@ -56,7 +57,8 @@ void getRemoteWeatherJSON() {
 }
 
 
-//read the local file
+//read the local file. You can do this on a remote URL like the 
+//getRemoteWeatherJSON(); function once you have a working API key
 void parseWeatherJSON() {
   JSONObject json_to_read;
   json_to_read = loadJSONObject("fakeweather.json");
