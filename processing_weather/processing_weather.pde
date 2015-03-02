@@ -54,7 +54,7 @@ void getRemoteWeatherJSON() {
   String version_number = new_observations.getString("version");
   //int numberOfElements = results.length();
   println(version_number);
-  saveJSONObject(json_to_write, "data/new_data.json");
+  saveJSONObject(json_to_read, "data/new_data.json");
 }
 
 
