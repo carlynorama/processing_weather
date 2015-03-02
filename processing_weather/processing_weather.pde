@@ -7,9 +7,9 @@ float diameter;
 
 void setup() {
   size(300, 300);
-  
+
   getRemoteWeatherJSON();
-  
+
   diameter = getPressure();
   diameter = diameter - 1000; 
   diameter = map(diameter, 0, 30, 0, 255 );
@@ -54,6 +54,7 @@ void getRemoteWeatherJSON() {
   String version_number = new_observations.getString("version");
   //int numberOfElements = results.length();
   println(version_number);
+  saveJSONObject(json_to_write, "data/new_data.json");
 }
 
 
