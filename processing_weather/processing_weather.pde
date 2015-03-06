@@ -45,28 +45,18 @@ void createFruitJSON() {
 }
 
 //load remote file (can't get real data until you have an API key)
-void getRemoteWeatherJSON() {
+void fetchRemoteWeatherJSON() {
   JSONObject json_to_read;
   //json_to_read = loadJSONObject("fakeweather.json");
   String query = "http://api.wunderground.com/api/" + API_key + "/conditions/q/CA/San_Francisco.json";
   json_to_read = loadJSONObject(query);
+  //Start Prove that it worked
   JSONObject new_observations = json_to_read.getJSONObject("response");
   String version_number = new_observations.getString("version");
   //int numberOfElements = results.length();
   println(version_number);
+  //END Prove that it worked
   saveJSONObject(json_to_read, "data/new_data.json");
-}
-
-
-//read the local file. You can do this on a remote URL like the 
-//getRemoteWeatherJSON(); function once you have a working API key
-void parseWeatherJSON() {
-  JSONObject json_to_read;
-  json_to_read = loadJSONObject("fakeweather.json");
-  JSONObject new_observations = json_to_read.getJSONObject("current_observation");
-  String millibars = new_observations.getString("pressure_mb");
-  //int numberOfElements = results.length();
-  println(millibars);
 }
 
 //read the local file and return the atmospheric 
@@ -76,7 +66,6 @@ float getPressure() {
   json_to_read = loadJSONObject("fakeweather.json");
   JSONObject new_observations = json_to_read.getJSONObject("current_observation");
   String millibars = new_observations.getString("pressure_mb");
-  //int numberOfElements = results.length();
   //println(millibars);
   return float(millibars);
 }
